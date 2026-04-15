@@ -9,9 +9,9 @@ int login(char *username, char *role, int argc, char *argv[]) {
 
     printf("\n=== LOGIN ===\n");
     printf("Username: ");
-    scanf("%s", inputUser);
+    scanf("%49s", inputUser);
     printf("Password: ");
-    scanf("%s", inputPass);
+    scanf("%49s", inputPass);
 
     for (int i = 0; i < jumlah; i++) {
         if (strcmp(akun[i].username, inputUser) == 0 &&

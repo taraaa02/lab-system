@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 // ===== STRUCT =====
 
@@ -15,38 +16,37 @@ typedef struct {
 typedef struct {
     int id;
     char nama[50];
+    char merek[50];
+    char model[50];
+    int tahun;
     int stok;
 } Alat;
 
 typedef struct {
     char username[50];
     int id_alat;
-    char nama_alat[100];
+    char nama_alat[50];
     char tanggal[20];
     int dikembalikan;
 } Pinjam;
 
 // ===== LOGIN =====
-
 int login(char *username, char *role, int argc, char *argv[]);
 
 // ===== FILE =====
-
 void bacaAkun(Akun akun[], int *jumlah);
 void bacaAlat(Alat alat[], int *jumlah);
 void bacaPinjam(Pinjam pinjam[], int *jumlah);
-
 void tulisAlat(Alat alat[], int jumlah);
 void tulisPinjam(Pinjam pinjam[], int jumlah);
 
 // ===== ALAT =====
-
 void tampilAlat();
 void tambahAlat();
 void hapusAlat();
+void tambahUser();
 
 // ===== PINJAM =====
-
 void pinjamAlat(char *username);
 void lihatPinjaman(char *username);
 void kembalikanAlat(char *username);

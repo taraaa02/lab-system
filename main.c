@@ -16,6 +16,7 @@ int main(int argc, char *argv[]) {
             printf("1. Tampil Alat\n");
             printf("2. Tambah Alat\n");
             printf("3. Hapus Alat\n");
+            printf("4. Tambah User\n");
         } else {
             printf("1. Tampil Alat\n");
             printf("2. Pinjam Alat\n");
@@ -31,6 +32,7 @@ int main(int argc, char *argv[]) {
             if (pilih == 1) tampilAlat();
             else if (pilih == 2) tambahAlat();
             else if (pilih == 3) hapusAlat();
+            else if (pilih == 4) tambahUser();
         } else {
             if (pilih == 1) tampilAlat();
             else if (pilih == 2) pinjamAlat(username);
