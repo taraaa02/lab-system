@@ -4,7 +4,6 @@
 #include "header.h"
 #include <time.h>
 
-// ===================== AMBIL TANGGAL HARI INI =====================
 
 static void getTanggal(char *buffer) {
     time_t t = time(NULL);
@@ -12,7 +11,6 @@ static void getTanggal(char *buffer) {
     strftime(buffer, 20, "%d-%m-%Y", tm_info);
 }
 
-// ===================== PINJAM ALAT =====================
 
 void pinjamAlat(char *username) {
     Alat alat[100];
@@ -27,7 +25,7 @@ void pinjamAlat(char *username) {
         return;
     }
 
-    // Tampilkan alat yang stoknya > 0
+  
     printf("\n--- ALAT TERSEDIA ---\n");
     printf("╔════╦══════════════════════════╦══════╗\n");
     printf("║ ID ║ Nama Alat                ║ Stok ║\n");
@@ -51,7 +49,7 @@ void pinjamAlat(char *username) {
     scanf("%d", &idPilih);
     if (idPilih == 0) return;
 
-    // Cari alat
+ 
     for (int i = 0; i < jmlAlat; i++) {
         if (alat[i].id == idPilih) {
             if (alat[i].stok <= 0) {
@@ -59,7 +57,7 @@ void pinjamAlat(char *username) {
                 return;
             }
 
-            // Cek apakah user sudah meminjam alat yang sama
+            
             for (int j = 0; j < jmlPinjam; j++) {
                 if (strcmp(pinjam[j].username, username) == 0 &&
                     pinjam[j].id_alat == idPilih &&
@@ -69,7 +67,7 @@ void pinjamAlat(char *username) {
                 }
             }
 
-            // Catat pinjaman baru
+           
             Pinjam baru;
             strncpy(baru.username, username, 49);
             baru.id_alat = alat[i].id;
@@ -80,7 +78,7 @@ void pinjamAlat(char *username) {
             pinjam[jmlPinjam] = baru;
             jmlPinjam++;
 
-            // Kurangi stok
+         
             alat[i].stok--;
 
             tulisAlat(alat, jmlAlat);
@@ -93,7 +91,7 @@ void pinjamAlat(char *username) {
     printf("✗ ID alat tidak ditemukan!\n");
 }
 
-// ===================== LIHAT PINJAMAN USER =====================
+
 
 void lihatPinjaman(char *username) {
     Pinjam pinjam[200];
@@ -122,7 +120,7 @@ void lihatPinjaman(char *username) {
     printf("╚════╩══════════════════════════╩════════════╩════════════╝\n");
 }
 
-// ===================== KEMBALIKAN ALAT =====================
+
 
 void kembalikanAlat(char *username) {
     Alat alat[100];
@@ -164,7 +162,7 @@ void kembalikanAlat(char *username) {
 
             pinjam[i].dikembalikan = 1;
 
-            // Tambah stok kembali
+            
             for (int j = 0; j < jmlAlat; j++) {
                 if (alat[j].id == idKembali) {
                     alat[j].stok++;
@@ -181,12 +179,12 @@ void kembalikanAlat(char *username) {
     printf("✗ Data pinjaman tidak ditemukan!\n");
 }
 
-// ===================== MENU PINJAM =====================
+
 
 void menuPinjam(char *username) {
     int pilihan;
     do {
-        printf("\n╔══════════════════════════════╗\n");
+        printf("╔══════════════════════════════╗\n");
         printf("║      MENU PEMINJAMAN ALAT    ║\n");
         printf("╠══════════════════════════════╣\n");
         printf("║  1. Pinjam Alat              ║\n");
