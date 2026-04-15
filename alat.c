@@ -1,8 +1,15 @@
 #include "header.h"
 
 void tampilAlat() {
+
     Alat alat[100];
     int jumlah = 0;
+    FILE *fp = fopen("data/alat.txt", "r");
+if (!fp) {
+    printf("FILE TIDAK DITEMUKAN!\n");
+    return;
+}
+fclose(fp);
 
     bacaAlat(alat, &jumlah);
 
@@ -19,34 +26,34 @@ void tampilAlat() {
 }
 
 void tambahAlat() {
-    FILE *fp = fopen("data/alat.txt", "a+");
-    if (!fp) return;
-
     Alat alat[100];
     int jumlah = 0;
 
-    rewind(fp);
-
-    while (fscanf(fp, "%d %49s %49s %49s %d %d",
-        &alat[jumlah].id,
-        alat[jumlah].nama,
-        alat[jumlah].merek,
-        alat[jumlah].model,
-        &alat[jumlah].tahun,
-        &alat[jumlah].stok) == 6) {
-        jumlah++;
+    // 👉 BACA DULU FILE (MODE READ)
+    FILE *fp = fopen("data/alat.txt", "r");
+    if (fp != NULL) {
+        while (fscanf(fp, "%d %49s %49s %49s %d %d",
+            &alat[jumlah].id,
+            alat[jumlah].nama,
+            alat[jumlah].merek,
+            alat[jumlah].model,
+            &alat[jumlah].tahun,
+            &alat[jumlah].stok) == 6) {
+            jumlah++;
+        }
+        fclose(fp);
     }
 
     Alat baru;
 
     printf("Nama: ");
-    scanf(" %49[^\n]", baru.nama);
+    scanf("%49s", baru.nama);
 
     printf("Merek: ");
-    scanf(" %49[^\n]", baru.merek);
+    scanf("%49s", baru.merek);
 
     printf("Model: ");
-    scanf(" %49[^\n]", baru.model);
+    scanf("%49s", baru.model);
 
     printf("Tahun: ");
     scanf("%d", &baru.tahun);
@@ -56,14 +63,21 @@ void tambahAlat() {
 
     baru.id = (jumlah == 0) ? 1 : alat[jumlah-1].id + 1;
 
+    // 👉 TULIS FILE (MODE APPEND)
+    fp = fopen("data/alat.txt", "a");
+    if (!fp) {
+        printf("Gagal buka file!\n");
+        return;
+    }
+
     fprintf(fp, "%d %s %s %s %d %d\n",
         baru.id, baru.nama, baru.merek,
         baru.model, baru.tahun, baru.stok);
 
     fclose(fp);
+
     printf("Berhasil tambah alat!\n");
 }
-
 void hapusAlat() {
     Alat alat[100];
     int jumlah = 0;

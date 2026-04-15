@@ -1,16 +1,1 @@
-1 laptop 5
-2 mouse 10
-3 keyboard 741
-41 laptop 3
-467 cpu 5
-41 kabel optik lan 290 100
-467 0 o j 290 100
-334 j 0 kjk 1962510232 1962557712
-500 kjk jh jhj 1962510232 1962557712
-41 laptop HP coreI5 2009 17
-467 laptop admin admin 2009 17
-41 CPU Advan 29 2998 12
-41 CPU Advan 23 29999 14
-41 aa aa aa 1962404432 212032955
-41 CPU & Ad 29000 19
-41 lll jjjjjjjjjjjj hjj 89988989 67
+1 Laptop Gaming Asus ROG 023 5
