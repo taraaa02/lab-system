@@ -8,8 +8,13 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
+<<<<<<< HEAD
       "cwd": "c:/Users/USER DK/Downloads/lab-system",
       "program": "c:/Users/USER DK/Downloads/lab-system/build/Debug/outDebug",
+=======
+      "cwd": "c:/Users/USER 1/lab-system",
+      "program": "c:/Users/USER 1/lab-system/build/Debug/outDebug",
+>>>>>>> 18e26afc5051d71afdb60aa73609ab24fb7f3137
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
