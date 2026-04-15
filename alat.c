@@ -1,19 +1,24 @@
 #include "header.h"
 
 void tampilAlat() {
-
     Alat alat[100];
     int jumlah = 0;
+
     FILE *fp = fopen("data/alat.txt", "r");
-if (!fp) {
-    printf("FILE TIDAK DITEMUKAN!\n");
-    return;
-}
-fclose(fp);
+    if (!fp) {
+        printf("FILE TIDAK DITEMUKAN!\n");
+        return;
+    }
+    fclose(fp);
 
     bacaAlat(alat, &jumlah);
 
     printf("\n=== DATA ALAT ===\n");
+    if (jumlah == 0) {
+        printf("Tidak ada data!\n");
+        return;
+    }
+
     for (int i = 0; i < jumlah; i++) {
         printf("%d | %s | %s | %s | %d | %d\n",
             alat[i].id,
@@ -29,10 +34,10 @@ void tambahAlat() {
     Alat alat[100];
     int jumlah = 0;
 
-    // 👉 BACA DULU FILE (MODE READ)
+    // 🔹 BACA FILE (FORMAT BARU)
     FILE *fp = fopen("data/alat.txt", "r");
     if (fp != NULL) {
-        while (fscanf(fp, "%d %49s %49s %49s %d %d",
+        while (fscanf(fp, "%d|%49[^|]|%49[^|]|%49[^|]|%d|%d\n",
             &alat[jumlah].id,
             alat[jumlah].nama,
             alat[jumlah].merek,
@@ -47,13 +52,13 @@ void tambahAlat() {
     Alat baru;
 
     printf("Nama: ");
-    scanf("%49s", baru.nama);
+    scanf(" %49[^\n]", baru.nama);
 
     printf("Merek: ");
-    scanf("%49s", baru.merek);
+    scanf(" %49[^\n]", baru.merek);
 
     printf("Model: ");
-    scanf("%49s", baru.model);
+    scanf(" %49[^\n]", baru.model);
 
     printf("Tahun: ");
     scanf("%d", &baru.tahun);
@@ -63,14 +68,14 @@ void tambahAlat() {
 
     baru.id = (jumlah == 0) ? 1 : alat[jumlah-1].id + 1;
 
-    // 👉 TULIS FILE (MODE APPEND)
+    // 🔹 SIMPAN FILE (FORMAT BARU)
     fp = fopen("data/alat.txt", "a");
     if (!fp) {
         printf("Gagal buka file!\n");
         return;
     }
 
-    fprintf(fp, "%d %s %s %s %d %d\n",
+    fprintf(fp, "%d|%s|%s|%s|%d|%d\n",
         baru.id, baru.nama, baru.merek,
         baru.model, baru.tahun, baru.stok);
 
@@ -78,6 +83,7 @@ void tambahAlat() {
 
     printf("Berhasil tambah alat!\n");
 }
+
 void hapusAlat() {
     Alat alat[100];
     int jumlah = 0;
