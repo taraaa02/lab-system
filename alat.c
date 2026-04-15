@@ -1,4 +1,5 @@
 #include "header.h"
+#include <stdlib.h>
 
 void tampilAlat() {
     Alat alat[100];
@@ -22,7 +23,8 @@ void tambahAlat() {
     printf("Stok: ");
     scanf("%d", &stok);
 
-    fprintf(fp, "%s %d\n", nama, stok);
+    int id = rand() % 1000;
+    fprintf(fp, "%d %s %d\n", id, nama, stok);
     fclose(fp);
 
     printf("Alat ditambahkan\n");
